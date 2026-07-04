@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminHomeController;
+use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\FrontController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -14,11 +16,22 @@ Route::get('/appointment', [FrontController::class, "appointmentPage"])->name('a
 Route::get('/search', [FrontController::class, "searchPage"])->name('search');
 Route::get('/contact', [FrontController::class, "contactPage"])->name('contact');
 
+Route::prefix("admin")->group(function () {
+    Route::get('/', [AdminHomeController::class, "homePage"])->name('admin-home');
+
+    Route::prefix("service")->group(function () {
+        Route::get('/', [AdminServiceController::class, "index"])->name('admin-service');
+        Route::get('/create', [AdminServiceController::class, "create"])->name('admin-service-create');
+    });
+});
+
 Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
 });
+
+
 
 require __DIR__ . '/settings.php';
 require __DIR__ . '/auth.php';

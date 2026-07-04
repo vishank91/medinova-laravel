@@ -1,6 +1,6 @@
 @extends('layout.master-layout')
 @section('title')
-    <title>Medinove | Team</title>
+    <title>Medinove | Testimonial</title>
 @endsection
 
 @section('main')
