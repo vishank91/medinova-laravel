@@ -12,6 +12,58 @@
             <div class="col-lg-9">
                 <h5 class="bg-primary p-2 text-center text-light">Service <a href="{{ route('admin-service') }}"><i
                             class="bi bi-arrow-left text-light float-end"></i></a></h5>
+                <form action="{{route('admin-service-store')}}" method="POST">
+                    @csrf
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <label>Name*</label>
+                            <input type="text" name="name" placeholder="Service Name" class="form-control" value="{{old('name')}}">
+
+                            @error('name')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label>Short Description*</label>
+                            <textarea name="shortDescription" placeholder="Short Description" class="form-control" rows="3">{{old('shortDescription')}}</textarea>
+
+                            @error('shortDescription')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="col-12 mb-3">
+                            <label>Description*</label>
+                            <div id="div_editor1" class="richtexteditor">
+                            </div>
+                           <input name="htmlcode" id="inp_htmlcode" type="hidden" />
+                            @error('description')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label>Icon*</label>
+                            <input type="text" name="icon" value="{{old('icon')}}"
+                                placeholder="Icon Tag Form Bootstap like <i class='bi bi-list'></i>" class="form-control">
+                            @error('icon')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label>Status*</label>
+                            <select name="status" class="form-select">
+                                <option value="1" selected={{old('status')==='1'?'selected':''}}>Active</option>
+                                <option value="0" selected={{old('status')==='0'?'selected':''}}>Inctive</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12 mb-3">
+                            <button type="submit" class="btn btn-primary w-100">Create</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

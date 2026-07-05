@@ -30,6 +30,11 @@
 
     <!-- Template Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/richtexteditor/rte_theme_default.css" />
+    <script type="text/javascript" src="/richtexteditor/rte.js"></script>
+    <script type="text/javascript" src='/richtexteditor/plugins/all_plugins.js'></script>
+
 </head>
 
 <body>
@@ -113,7 +118,7 @@
                             class="nav-item nav-link {{ Route::is('testimonial') ? 'active' : '' }}">Testimonial</a>
                         <a href="{{ route('contact') }}"
                             class="nav-item nav-link {{ Route::is('contact') ? 'active' : '' }}">Contact</a>
-                            <a href="{{ route('admin-home') }}"
+                        <a href="{{ route('admin-home') }}"
                             class="nav-item nav-link {{ Route::is('contact') ? 'active' : '' }}">Admin</a>
                         {{-- <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
@@ -213,15 +218,15 @@
                     <h6 class="text-primary text-uppercase mt-4 mb-3">Follow Us</h6>
                     <div class="d-flex">
                         <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" target="_blank"
-                            href="{{config('app.siteFacebook')}}"><i class="fab fa-facebook-f"></i></a>
+                            href="{{ config('app.siteFacebook') }}"><i class="fab fa-facebook-f"></i></a>
                         <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" target="_blank"
-                            href="{{config('app.siteTwitter')}}"><i class="fab fa-twitter"></i></a>
+                            href="{{ config('app.siteTwitter') }}"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" target="_blank"
-                            href="{{config('app.siteLinkedin')}}"><i class="fab fa-linkedin-in"></i></a>
+                            href="{{ config('app.siteLinkedin') }}"><i class="fab fa-linkedin-in"></i></a>
                         <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" target="_blank"
-                            href="{{config('app.siteYoutube')}}"><i class="fab fa-youtube"></i></a>
+                            href="{{ config('app.siteYoutube') }}"><i class="fab fa-youtube"></i></a>
                         <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" target="_blank"
-                            href="{{config('app.siteInstagram')}}"><i class="fab fa-instagram"></i></a>
+                            href="{{ config('app.siteInstagram') }}"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -231,7 +236,8 @@
         <div class="container">
             <div class="row g-5">
                 <div class="col-md-6 text-center text-md-start">
-                    <p class="mb-md-0">&copy; <a class="text-primary" target="_blank" href="{{route('home')}}">{{config('app.siteName')}}</a>. All Rights
+                    <p class="mb-md-0">&copy; <a class="text-primary" target="_blank"
+                            href="{{ route('home') }}">{{ config('app.siteName') }}</a>. All Rights
                         Reserved.
                     </p>
                 </div>
@@ -257,6 +263,14 @@
 
     <!-- Template Javascript -->
     <script src="/js/main.js"></script>
+
+    <script>
+        var editor1 = new RichTextEditor(document.getElementById("div_editor1"));
+        editor1.attachEvent("change", function() {
+            document.getElementById("inp_htmlcode").value = editor1.getHTMLCode();
+        });
+    </script>
+
 </body>
 
 </html>

@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class AdminServiceController extends Controller
 {
+
+    public function __construct(private Service $service)
+    {
+    }
     /**
      * Display a listing of the resource.
      */
@@ -20,7 +25,7 @@ class AdminServiceController extends Controller
      */
     public function create()
     {
-         return view("admin.service.create");
+        return view("admin.service.create");
     }
 
     /**
@@ -28,7 +33,22 @@ class AdminServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:10|max:100',
+            'shortDescription' => 'required',
+            'inp_htmlcode' => 'required',
+            'icon' => 'required|min:5|max:50',
+        ]);
+
+        $this->service->create([
+            'name' => $request->name,
+            'shortDescription' => $request->shortDescription,
+            'description' => $request->inp_htmlcode,
+            'icon' => $request->icon,
+            'status' => $request->status
+        ]);
+
+        redirect()->route('admin-service');
     }
 
     /**
