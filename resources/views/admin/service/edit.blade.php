@@ -12,12 +12,13 @@
             <div class="col-lg-9">
                 <h5 class="bg-primary p-2 text-center text-light">Service <a href="{{ route('admin-service') }}"><i
                             class="bi bi-arrow-left text-light float-end"></i></a></h5>
-                <form action="{{route('admin-service-store')}}" method="POST">
+                <form action="{{ route('admin-service-update', $data->id) }}" method="POST">
                     @csrf
                     <div class="row">
                         <div class="col-12 mb-3">
                             <label>Name*</label>
-                            <input type="text" name="name" placeholder="Service Name" class="form-control" value="{{old('name')}}">
+                            <input type="text" name="name" placeholder="Service Name" class="form-control"
+                                value="{{ old('name', $data->name) }}">
 
                             @error('name')
                                 <p class="text-danger">{{ $message }}</p>
@@ -25,7 +26,7 @@
                         </div>
                         <div class="col-12 mb-3">
                             <label>Short Description*</label>
-                            <textarea name="shortDescription" placeholder="Short Description" class="form-control" rows="3">{{old('shortDescription')}}</textarea>
+                            <textarea name="shortDescription" placeholder="Short Description" class="form-control" rows="3">{{ old('shortDescription', $data->shortDescription) }}</textarea>
 
                             @error('shortDescription')
                                 <p class="text-danger">{{ $message }}</p>
@@ -34,8 +35,10 @@
 
                         <div class="col-12 mb-3">
                             <label>Description*</label>
-                            <div id="div_editor1" class="richtexteditor">{{old('htmlcode')}}</div>
-                           <input name="htmlcode" id="inp_htmlcode" type="hidden" />
+                            <div id="div_editor1" class="richtexteditor">
+                                {!! old('htmlCode', $data->description) !!}</div>
+                            <input name="htmlcode" id="inp_htmlcode" type="hidden"
+                                value="{{ old('htmlCode', $data->description) }}" />
                             @error('htmlcode')
                                 <p class="text-danger">{{ $message }}</p>
                             @enderror
@@ -43,7 +46,7 @@
 
                         <div class="col-md-6 mb-3">
                             <label>Icon*</label>
-                            <input type="text" name="icon" value="{{old('icon')}}"
+                            <input type="text" name="icon" value="{{ old('icon', $data->icon) }}"
                                 placeholder="Icon Tag Form Bootstap like <i class='bi bi-list'></i>" class="form-control">
                             @error('icon')
                                 <p class="text-danger">{{ $message }}</p>
@@ -53,13 +56,15 @@
                         <div class="col-md-6 mb-3">
                             <label>Status*</label>
                             <select name="status" class="form-select">
-                                <option value="1" {{old('status','1')=='1'?'selected':''}}>Active</option>
-                                <option value="0" {{old('status','1')=='0'?'selected':''}}>Inctive</option>
+                                <option value="1" {{ old('status', $data->status) == '1' ? 'selected' : '' }}>Active
+                                </option>
+                                <option value="0" {{ old('status', $data->status) == '0' ? 'selected' : '' }}>Inctive
+                                </option>
                             </select>
                         </div>
 
                         <div class="col-12 mb-3">
-                            <button type="submit" class="btn btn-primary w-100">Create</button>
+                            <button type="submit" class="btn btn-primary w-100">Update</button>
                         </div>
                     </div>
                 </form>

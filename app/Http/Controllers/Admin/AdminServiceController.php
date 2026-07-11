@@ -9,15 +9,14 @@ use Illuminate\Http\Request;
 class AdminServiceController extends Controller
 {
 
-    public function __construct(private Service $service)
-    {
-    }
+    public function __construct(private Service $service) {}
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view("admin.service.index");
+        $data = $this->service->all();
+        return view("admin.service.index", compact('data'));
     }
 
     /**
@@ -34,21 +33,21 @@ class AdminServiceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|min:10|max:100',
+            'name' => 'required|min:3|max:100',
             'shortDescription' => 'required',
-            'inp_htmlcode' => 'required',
+            'htmlcode' => 'required',
             'icon' => 'required|min:5|max:50',
         ]);
 
         $this->service->create([
             'name' => $request->name,
             'shortDescription' => $request->shortDescription,
-            'description' => $request->inp_htmlcode,
+            'description' => $request->htmlcode,
             'icon' => $request->icon,
             'status' => $request->status
         ]);
 
-        redirect()->route('admin-service');
+        return redirect()->route('admin-service');
     }
 
     /**
@@ -56,7 +55,8 @@ class AdminServiceController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $data = $this->service->find($id);
+        return view("admin.service.show", compact('data'));
     }
 
     /**
@@ -64,7 +64,8 @@ class AdminServiceController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = $this->service->find($id);
+        return view("admin.service.edit", compact('data'));
     }
 
     /**
@@ -72,7 +73,22 @@ class AdminServiceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:3|max:100',
+            'shortDescription' => 'required',
+            'htmlcode' => 'required',
+            'icon' => 'required|min:5|max:50',
+        ]);
+
+        $this->service->find($id)->update([
+            'name' => $request->name,
+            'shortDescription' => $request->shortDescription,
+            'description' => $request->htmlcode,
+            'icon' => $request->icon,
+            'status' => $request->status
+        ]);
+
+        return redirect()->route('admin-service');
     }
 
     /**
@@ -80,6 +96,7 @@ class AdminServiceController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $this->service->find($id)->delete();
+        return redirect()->route('admin-service');
     }
 }

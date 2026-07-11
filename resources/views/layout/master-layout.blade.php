@@ -19,7 +19,8 @@
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
 
     <!-- Libraries Stylesheet -->
     <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -30,6 +31,7 @@
 
     <!-- Template Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.8/css/dataTables.dataTables.css">
 
     <link rel="stylesheet" href="/richtexteditor/rte_theme_default.css" />
     <script type="text/javascript" src="/richtexteditor/rte.js"></script>
@@ -261,13 +263,46 @@
     <script src="/lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.3.8/js/dataTables.js"></script>
+
     <!-- Template Javascript -->
     <script src="/js/main.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        new DataTable('#myDataTable');
+
+
         var editor1 = new RichTextEditor(document.getElementById("div_editor1"));
         editor1.attachEvent("change", function() {
             document.getElementById("inp_htmlcode").value = editor1.getHTMLCode();
+        });
+    </script>
+    <script>
+        document.querySelectorAll('.delete-btn').forEach(function(button) {
+
+            button.addEventListener('click', function() {
+
+                let url = this.dataset.url;
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "This record will be deleted permanently!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, Delete it!'
+                }).then((result) => {
+
+                    if (result.isConfirmed) {
+                        window.location.href = url;
+                    }
+
+                });
+
+            });
+
         });
     </script>
 

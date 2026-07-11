@@ -23,6 +23,10 @@ Route::prefix("admin")->group(function () {
         Route::get('/', [AdminServiceController::class, "index"])->name('admin-service');
         Route::get('/create', [AdminServiceController::class, "create"])->name('admin-service-create');
         Route::post('/store', [AdminServiceController::class, "store"])->name('admin-service-store');
+        Route::get('/destroy/{id}', [AdminServiceController::class, "destroy"])->name('admin-service-destroy');
+        Route::get('/edit/{id}', [AdminServiceController::class, "edit"])->name('admin-service-edit');
+        Route::post('/update/{id}', [AdminServiceController::class, "update"])->name('admin-service-update');
+        Route::get('/show/{id}', [AdminServiceController::class, "show"])->name('admin-service-show');
     });
 });
 
