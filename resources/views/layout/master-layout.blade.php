@@ -263,7 +263,6 @@
     <script src="/lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.3.8/js/dataTables.js"></script>
 
     <!-- Template Javascript -->
@@ -279,30 +278,22 @@
         });
     </script>
     <script>
-        document.querySelectorAll('.delete-btn').forEach(function(button) {
+        $(document).on('click', '.delete-btn', function(e) {
+            e.preventDefault();
 
-            button.addEventListener('click', function() {
+            let url = $(this).data('url');
 
-                let url = this.dataset.url;
-
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "This record will be deleted permanently!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Yes, Delete it!'
-                }).then((result) => {
-
-                    if (result.isConfirmed) {
-                        window.location.href = url;
-                    }
-
-                });
-
+            Swal.fire({
+                title: 'Delete Record?',
+                text: 'You will not be able to recover it.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, Delete'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = url;
+                }
             });
-
         });
     </script>
 

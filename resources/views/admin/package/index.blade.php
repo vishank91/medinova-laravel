@@ -10,7 +10,7 @@
                 @include('partials.admin-sidebar')
             </div>
             <div class="col-lg-9">
-                <h5 class="bg-primary p-2 text-center text-light">Service <a href="{{ route('admin-service-create') }}"><i
+                <h5 class="bg-primary p-2 text-center text-light">Packages <a href="{{ route('admin-package-create') }}"><i
                             class="bi bi-plus text-light float-end"></i></a></h5>
                 <div class="table-responsive">
                     <table id="myDataTable" class="table table-bordered text-dark">
@@ -34,13 +34,13 @@
                                     <td><span class="fs-3">{!! $item->icon !!}</span></td>
                                     <td>{{ $item->shortDescription }}</td>
                                     <td>{{ $item->status ? 'Active' : 'Inactive' }}</td>
-                                    <td><a href="{{ route('admin-service-show', $item->id) }}" class="btn btn-primary"><i
+                                    <td><a href="{{ route('admin-package-show', $item->id) }}" class="btn btn-primary"><i
                                                 class="bi bi-eye"></i></a></td>
-                                    <td><a href="{{ route('admin-service-edit', $item->id) }}" class="btn btn-success"><i
+                                    <td><a href="{{ route('admin-package-edit', $item->id) }}" class="btn btn-success"><i
                                                 class="bi bi-pencil-square"></i></a></td>
                                     <td>
                                         <a href="javascript:void(0)" class="btn btn-danger delete-btn"
-                                            data-url="{{ route('admin-service-destroy',$item->id) }}">
+                                            data-url="{{ route('admin-package-destroy',$item->id) }}">
                                             <i class="bi bi-x"></i>
                                         </a>
                                     </td>

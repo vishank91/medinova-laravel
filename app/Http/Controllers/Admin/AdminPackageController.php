@@ -3,21 +3,22 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Service;
+use App\Models\Package;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
-class AdminServiceController extends Controller
+class AdminPackageController extends Controller
 {
 
-    public function __construct(private Service $service) {}
+    public function __construct(private Package $package) {}
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data = $this->service->all();
-        return view("admin.service.index", compact('data'));
+        $data = $this->package->all();
+        return view("admin.package.index", compact('data'));
     }
 
     /**
@@ -25,7 +26,7 @@ class AdminServiceController extends Controller
      */
     public function create()
     {
-        return view("admin.service.create");
+        return view("admin.package.create");
     }
 
     /**
@@ -34,21 +35,28 @@ class AdminServiceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|min:3|max:100|unique:services',
+            'name' => 'required|min:3|max:100|unique:packages',
+            'basePrice' => 'required',
+            'discount' => 'required',
             'shortDescription' => 'required',
             'htmlcode' => 'required',
-            'icon' => 'required|min:5|max:50',
+            'pic' => 'required|min:5|max:50',
         ]);
 
-        $this->service->create([
+        $pic = Storage::disk('public')->putFileAs('package', $request->pic);
+
+        $this->package->create([
             'name' => $request->name,
+            'basePrice' => $request->basePrice,
+            'discount' => $request->discount,
+            'finalPrice' => intval($request->basePrice - $request->basePrice * $request->discount / 100),
             'shortDescription' => $request->shortDescription,
             'description' => $request->htmlcode,
-            'icon' => $request->icon,
+            'pic' => $pic,
             'status' => $request->status
         ]);
 
-        return redirect()->route('admin-service');
+        return redirect()->route('admin-package');
     }
 
     /**
@@ -56,8 +64,8 @@ class AdminServiceController extends Controller
      */
     public function show(string $id)
     {
-        $data = $this->service->find($id);
-        return view("admin.service.show", compact('data'));
+        $data = $this->package->find($id);
+        return view("admin.package.show", compact('data'));
     }
 
     /**
@@ -65,8 +73,8 @@ class AdminServiceController extends Controller
      */
     public function edit(string $id)
     {
-        $data = $this->service->find($id);
-        return view("admin.service.edit", compact('data'));
+        $data = $this->package->find($id);
+        return view("admin.package.edit", compact('data'));
     }
 
     /**
@@ -75,13 +83,13 @@ class AdminServiceController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'name' => ['required', 'min:3', "max:100", Rule::unique('services')->ignore($id)],
+            'name' => ['required', 'min:3', "max:100", Rule::unique('packages')->ignore($id)],
             'shortDescription' => 'required',
             'htmlcode' => 'required',
             'icon' => 'required|min:5|max:50',
         ]);
 
-        $this->service->find($id)->update([
+        $this->package->find($id)->update([
             'name' => $request->name,
             'shortDescription' => $request->shortDescription,
             'description' => $request->htmlcode,
@@ -89,7 +97,7 @@ class AdminServiceController extends Controller
             'status' => $request->status
         ]);
 
-        return redirect()->route('admin-service');
+        return redirect()->route('admin-package');
     }
 
     /**
@@ -97,7 +105,7 @@ class AdminServiceController extends Controller
      */
     public function destroy(string $id)
     {
-        $this->service->find($id)->delete();
-        return redirect()->route('admin-service');
+        $this->package->find($id)->delete();
+        return redirect()->route('admin-package');
     }
 }

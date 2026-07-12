@@ -5,7 +5,7 @@
     <a href="{{ route('admin-service') }}" class="list-group-item list-group-item-action mb-1 active" aria-current="true">
         <i class="bi bi-list fs-5"></i><span class="float-end">Service</span>
     </a>
-    <a href="#" class="list-group-item list-group-item-action mb-1 active" aria-current="true">
+    <a href="{{ route('admin-package') }}" class="list-group-item list-group-item-action mb-1 active" aria-current="true">
         <i class="bi bi-tag fs-5"></i><span class="float-end">Package</span>
     </a>
     <a href="#" class="list-group-item list-group-item-action mb-1 active" aria-current="true">

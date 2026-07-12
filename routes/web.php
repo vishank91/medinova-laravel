@@ -1,10 +1,13 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminHomeController;
-use App\Http\Controllers\Admin\AdminServiceController;
-use App\Http\Controllers\FrontController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+
+use App\Http\Controllers\FrontController;
+
+use App\Http\Controllers\Admin\AdminHomeController;
+use App\Http\Controllers\Admin\AdminServiceController;
+use App\Http\Controllers\Admin\AdminPackageController;
 
 Route::get('/', [FrontController::class, "homePage"])->name('home');
 Route::get('/about', [FrontController::class, "aboutPage"])->name('about');
@@ -27,6 +30,16 @@ Route::prefix("admin")->group(function () {
         Route::get('/edit/{id}', [AdminServiceController::class, "edit"])->name('admin-service-edit');
         Route::post('/update/{id}', [AdminServiceController::class, "update"])->name('admin-service-update');
         Route::get('/show/{id}', [AdminServiceController::class, "show"])->name('admin-service-show');
+    });
+
+    Route::prefix("package")->group(function () {
+        Route::get('/', [AdminPackageController::class, "index"])->name('admin-package');
+        Route::get('/create', [AdminPackageController::class, "create"])->name('admin-package-create');
+        Route::post('/store', [AdminPackageController::class, "store"])->name('admin-package-store');
+        Route::get('/destroy/{id}', [AdminPackageController::class, "destroy"])->name('admin-package-destroy');
+        Route::get('/edit/{id}', [AdminPackageController::class, "edit"])->name('admin-package-edit');
+        Route::post('/update/{id}', [AdminPackageController::class, "update"])->name('admin-package-update');
+        Route::get('/show/{id}', [AdminPackageController::class, "show"])->name('admin-package-show');
     });
 });
 
