@@ -12,7 +12,7 @@
             <div class="col-lg-9">
                 <h5 class="bg-primary p-2 text-center text-light">Package <a href="{{ route('admin-package') }}"><i
                             class="bi bi-arrow-left text-light float-end"></i></a></h5>
-                <form action="{{ route('admin-package-update', $data->id) }}" method="POST">
+                <form action="{{ route('admin-package-update', $data->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-12 mb-3">
@@ -24,6 +24,28 @@
                                 <p class="text-danger">{{ $message }}</p>
                             @enderror
                         </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label>Base Price*</label>
+                            <input type="number" name="basePrice" placeholder="Package Base Price" class="form-control"
+                                value="{{ old('basePrice',$data->basePrice) }}">
+
+                            @error('basePrice')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label>Discount*</label>
+                            <input type="number" name="discount" placeholder="Package Discount" class="form-control"
+                                value="{{ old('discount',$data->discount) }}">
+
+                            @error('discount')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+
                         <div class="col-12 mb-3">
                             <label>Short Description*</label>
                             <textarea name="shortDescription" placeholder="Short Description" class="form-control" rows="3">{{ old('shortDescription', $data->shortDescription) }}</textarea>
@@ -45,10 +67,9 @@
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label>Icon*</label>
-                            <input type="text" name="icon" value="{{ old('icon', $data->icon) }}"
-                                placeholder="Icon Tag Form Bootstap like <i class='bi bi-list'></i>" class="form-control">
-                            @error('icon')
+                            <label>Pic</label>
+                            <input type="file" name="pic" class="form-control">
+                            @error('pic')
                                 <p class="text-danger">{{ $message }}</p>
                             @enderror
                         </div>

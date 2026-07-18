@@ -40,10 +40,10 @@ class AdminPackageController extends Controller
             'discount' => 'required',
             'shortDescription' => 'required',
             'htmlcode' => 'required',
-            'pic' => 'required|min:5|max:50',
+            'pic' => 'required|image|mimes:jpg,jpeg,png,webp|max:1024',
         ]);
 
-        $pic = Storage::disk('public')->putFileAs('package', $request->pic);
+        $pic = Storage::disk('public')->put('package', $request->pic);
 
         $this->package->create([
             'name' => $request->name,
@@ -83,17 +83,28 @@ class AdminPackageController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'name' => ['required', 'min:3', "max:100", Rule::unique('packages')->ignore($id)],
+            'name' => ['required', 'min:3', "max:100", Rule::unique('services')->ignore($id)],
+            'basePrice' => 'required',
+            'discount' => 'required',
             'shortDescription' => 'required',
             'htmlcode' => 'required',
-            'icon' => 'required|min:5|max:50',
+            'pic' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:1024',
         ]);
 
-        $this->package->find($id)->update([
+        $data = $this->package->find($id);
+        $pic = $data->pic;
+        if ($request->pic) {
+            Storage::disk("public")->delete("package", $data->pic);
+            $pic = Storage::disk('public')->put('package', $request->pic);
+        }
+        $data->update([
             'name' => $request->name,
+            'basePrice' => $request->basePrice,
+            'discount' => $request->discount,
+            'finalPrice' => intval($request->basePrice - $request->basePrice * $request->discount / 100),
             'shortDescription' => $request->shortDescription,
             'description' => $request->htmlcode,
-            'icon' => $request->icon,
+            'pic' => $pic,
             'status' => $request->status
         ]);
 
@@ -105,7 +116,9 @@ class AdminPackageController extends Controller
      */
     public function destroy(string $id)
     {
-        $this->package->find($id)->delete();
+        $data = $this->package->find($id);
+        Storage::disk("public")->delete("package", $data->pic);
+        $data->delete();
         return redirect()->route('admin-package');
     }
 }

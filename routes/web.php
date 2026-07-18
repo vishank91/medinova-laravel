@@ -8,6 +8,7 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminPackageController;
+use App\Http\Controllers\Admin\AdminDepartmentController;
 
 Route::get('/', [FrontController::class, "homePage"])->name('home');
 Route::get('/about', [FrontController::class, "aboutPage"])->name('about');
@@ -40,6 +41,16 @@ Route::prefix("admin")->group(function () {
         Route::get('/edit/{id}', [AdminPackageController::class, "edit"])->name('admin-package-edit');
         Route::post('/update/{id}', [AdminPackageController::class, "update"])->name('admin-package-update');
         Route::get('/show/{id}', [AdminPackageController::class, "show"])->name('admin-package-show');
+    });
+
+    Route::prefix("department")->group(function () {
+        Route::get('/', [AdminDepartmentController::class, "index"])->name('admin-department');
+        Route::get('/create', [AdminDepartmentController::class, "create"])->name('admin-department-create');
+        Route::post('/store', [AdminDepartmentController::class, "store"])->name('admin-department-store');
+        Route::get('/destroy/{id}', [AdminDepartmentController::class, "destroy"])->name('admin-department-destroy');
+        Route::get('/edit/{id}', [AdminDepartmentController::class, "edit"])->name('admin-department-edit');
+        Route::post('/update/{id}', [AdminDepartmentController::class, "update"])->name('admin-department-update');
+        Route::get('/show/{id}', [AdminDepartmentController::class, "show"])->name('admin-department-show');
     });
 });
 

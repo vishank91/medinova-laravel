@@ -8,6 +8,10 @@
     <a href="{{ route('admin-package') }}" class="list-group-item list-group-item-action mb-1 active" aria-current="true">
         <i class="bi bi-tag fs-5"></i><span class="float-end">Package</span>
     </a>
+    <a href="{{ route('admin-department') }}" class="list-group-item list-group-item-action mb-1 active" aria-current="true">
+        <i class="bi bi-building fs-5"></i><span class="float-end">Department</span>
+    </a>
+    
     <a href="#" class="list-group-item list-group-item-action mb-1 active" aria-current="true">
         <i class="bi bi-people fs-5"></i><span class="float-end">Team</span>
     </a>

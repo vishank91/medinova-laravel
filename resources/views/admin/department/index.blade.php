@@ -10,7 +10,7 @@
                 @include('partials.admin-sidebar')
             </div>
             <div class="col-lg-9">
-                <h5 class="bg-primary p-2 text-center text-light">Packages <a href="{{ route('admin-package-create') }}"><i
+                <h5 class="bg-primary p-2 text-center text-light">Department <a href="{{ route('admin-department-create') }}"><i
                             class="bi bi-plus text-light float-end"></i></a></h5>
                 <div class="table-responsive">
                     <table id="myDataTable" class="table table-bordered text-dark">
@@ -18,13 +18,8 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>
-                                <th>Base Price</th>
-                                <th>Discount</th>
-                                <th>Final Price</th>
-                                <th>Pic</th>
                                 <th>Short Description</th>
                                 <th>Status</th>
-                                <th></th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -34,23 +29,13 @@
                                 <tr>
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>&#8377;{{ $item->basePrice }}</td>
-                                    <td>{{ $item->discount }}% Off</td>
-                                    <td>&#8377;{{ $item->finalPrice }}</td>
-                                    <td>
-                                        <a href={{$item->pic()}} target="_blank">
-                                            <img src={{$item->pic()}} height="100px" width="100px" alt="">
-                                        </a>
-                                    </td>
                                     <td>{{ $item->shortDescription }}</td>
                                     <td>{{ $item->status ? 'Active' : 'Inactive' }}</td>
-                                    <td><a href="{{ route('admin-package-show', $item->id) }}" class="btn btn-primary"><i
-                                                class="bi bi-eye"></i></a></td>
-                                    <td><a href="{{ route('admin-package-edit', $item->id) }}" class="btn btn-success"><i
+                                    <td><a href="{{ route('admin-department-edit', $item->id) }}" class="btn btn-success"><i
                                                 class="bi bi-pencil-square"></i></a></td>
                                     <td>
                                         <a href="javascript:void(0)" class="btn btn-danger delete-btn"
-                                            data-url="{{ route('admin-package-destroy',$item->id) }}">
+                                            data-url="{{ route('admin-department-destroy', $item->id) }}">
                                             <i class="bi bi-x"></i>
                                         </a>
                                     </td>

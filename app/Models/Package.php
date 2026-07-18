@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Package extends Model
 {
@@ -16,4 +17,9 @@ class Package extends Model
         'status',
         'pic'
     ];
+
+    function pic()
+    {
+       return Storage::url($this->pic);
+    }
 }
