@@ -6,6 +6,6 @@
 @section('main')
     @include('partials.about')
     @include('partials.search')
-    @include('partials.team')
+    @include('partials.doctor')
     @include('partials.testimonial')
 @endsection

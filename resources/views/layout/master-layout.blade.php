@@ -110,8 +110,8 @@
                             class="nav-item nav-link {{ Route::is('service') ? 'active' : '' }}">Service</a>
                         <a href="{{ route('pricing') }}"
                             class="nav-item nav-link {{ Route::is('pricing') ? 'active' : '' }}">Pricing</a>
-                        <a href="{{ route('team') }}"
-                            class="nav-item nav-link {{ Route::is('team') ? 'active' : '' }}">Team</a>
+                        <a href="{{ route('doctor') }}"
+                            class="nav-item nav-link {{ Route::is('doctor') ? 'active' : '' }}">Doctor</a>
                         <a href="{{ route('appointment') }}"
                             class="nav-item nav-link {{ Route::is('appointment') ? 'active' : '' }}">Appointment</a>
                         <a href="{{ route('search') }}"
@@ -179,8 +179,8 @@
                                 class="fa fa-angle-right me-2"></i>Service</a>
                         <a class="text-light mb-2" target="_blank" href="{{ route('pricing') }}"><i
                                 class="fa fa-angle-right me-2"></i>Pricing</a>
-                        <a class="text-light mb-2" target="_blank" href="{{ route('team') }}"><i
-                                class="fa fa-angle-right me-2"></i>Team</a>
+                        <a class="text-light mb-2" target="_blank" href="{{ route('doctor') }}"><i
+                                class="fa fa-angle-right me-2"></i>Doctor</a>
                         <a class="text-light mb-2" target="_blank" href="{{ route('appointment') }}"><i
                                 class="fa fa-angle-right me-2"></i>Appointment</a>
                     </div>
@@ -190,17 +190,17 @@
                         class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">
                         Popular Links</h4>
                     <div class="d-flex flex-column justify-content-start">
-                        <a class="text-light mb-2" target="_blank" href="{{ route('home') }}"><i
+                        <a class="text-light mb-2" target="_blank" href="{{ route('search') }}"><i
                                 class="fa fa-angle-right me-2"></i>Search</a>
-                        <a class="text-light mb-2" target="_blank" href="{{ route('about') }}"><i
+                        <a class="text-light mb-2" target="_blank" href="{{ route('testimonial') }}"><i
                                 class="fa fa-angle-right me-2"></i>Testimonial</a>
-                        <a class="text-light mb-2" target="_blank" href="{{ route('service') }}"><i
+                        <a class="text-light mb-2" target="_blank" href="{{ route('contact') }}"><i
                                 class="fa fa-angle-right me-2"></i>Contact Us</a>
-                        <a class="text-light mb-2" target="_blank" href="{{ route('pricing') }}"><i
+                        <a class="text-light mb-2" target="_blank" href="#"><i
                                 class="fa fa-angle-right me-2"></i>Privacy Policy</a>
-                        <a class="text-light mb-2" target="_blank" href="{{ route('team') }}"><i
+                        <a class="text-light mb-2" target="_blank" href="#"><i
                                 class="fa fa-angle-right me-2"></i>Terms And Conditions</a>
-                        <a class="text-light mb-2" target="_blank" href="{{ route('appointment') }}"><i
+                        <a class="text-light mb-2" target="_blank" href="#"><i
                                 class="fa fa-angle-right me-2"></i>Data Policy</a>
                     </div>
                 </div>

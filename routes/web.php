@@ -9,12 +9,13 @@ use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminPackageController;
 use App\Http\Controllers\Admin\AdminDepartmentController;
+use App\Http\Controllers\Admin\AdminDoctorController;
 
 Route::get('/', [FrontController::class, "homePage"])->name('home');
 Route::get('/about', [FrontController::class, "aboutPage"])->name('about');
 Route::get('/service', [FrontController::class, "servicePage"])->name('service');
 Route::get('/pricing', [FrontController::class, "pricingPage"])->name('pricing');
-Route::get('/team', [FrontController::class, "teamPage"])->name('team');
+Route::get('/doctor', [FrontController::class, "doctorPage"])->name('doctor');
 Route::get('/testimonial', [FrontController::class, "testimonialPage"])->name('testimonial');
 Route::get('/appointment', [FrontController::class, "appointmentPage"])->name('appointment');
 Route::get('/search', [FrontController::class, "searchPage"])->name('search');
@@ -51,6 +52,16 @@ Route::prefix("admin")->group(function () {
         Route::get('/edit/{id}', [AdminDepartmentController::class, "edit"])->name('admin-department-edit');
         Route::post('/update/{id}', [AdminDepartmentController::class, "update"])->name('admin-department-update');
         Route::get('/show/{id}', [AdminDepartmentController::class, "show"])->name('admin-department-show');
+    });
+
+    Route::prefix("doctor")->group(function () {
+        Route::get('/', [AdminDoctorController::class, "index"])->name('admin-doctor');
+        Route::get('/create', [AdminDoctorController::class, "create"])->name('admin-doctor-create');
+        Route::post('/store', [AdminDoctorController::class, "store"])->name('admin-doctor-store');
+        Route::get('/destroy/{id}', [AdminDoctorController::class, "destroy"])->name('admin-doctor-destroy');
+        Route::get('/edit/{id}', [AdminDoctorController::class, "edit"])->name('admin-doctor-edit');
+        Route::post('/update/{id}', [AdminDoctorController::class, "update"])->name('admin-doctor-update');
+        Route::get('/show/{id}', [AdminDoctorController::class, "show"])->name('admin-doctor-show');
     });
 });
 

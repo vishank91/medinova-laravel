@@ -22,8 +22,8 @@ class FrontController extends Controller
         return view("price");
     }
 
-    public function teamPage(){
-        return view("team");
+    public function doctorPage(){
+        return view("doctor");
     }
 
     public function testimonialPage(){

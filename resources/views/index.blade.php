@@ -26,7 +26,7 @@
     @include('partials.service')
     @include('partials.appointment')
     @include('partials.pricing')
-    @include('partials.team')
+    @include('partials.doctor')
     @include('partials.search')
     @include('partials.testimonial')
     @include('partials.blog')

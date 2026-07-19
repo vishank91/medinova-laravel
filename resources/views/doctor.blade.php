@@ -4,7 +4,7 @@
 @endsection
 
 @section('main')
-    @include('partials.team')
+    @include('partials.doctor')
     @include('partials.service')
     @include('partials.testimonial')
 @endsection
