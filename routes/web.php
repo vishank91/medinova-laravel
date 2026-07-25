@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminPackageController;
 use App\Http\Controllers\Admin\AdminDepartmentController;
 use App\Http\Controllers\Admin\AdminDoctorController;
+use App\Http\Controllers\Admin\AdminTestimonialController;
 
 Route::get('/', [FrontController::class, "homePage"])->name('home');
 Route::get('/about', [FrontController::class, "aboutPage"])->name('about');
@@ -62,6 +63,16 @@ Route::prefix("admin")->group(function () {
         Route::get('/edit/{id}', [AdminDoctorController::class, "edit"])->name('admin-doctor-edit');
         Route::post('/update/{id}', [AdminDoctorController::class, "update"])->name('admin-doctor-update');
         Route::get('/show/{id}', [AdminDoctorController::class, "show"])->name('admin-doctor-show');
+    });
+
+    Route::prefix("testimonial")->group(function () {
+        Route::get('/', [AdminTestimonialController::class, "index"])->name('admin-testimonial');
+        Route::get('/create', [AdminTestimonialController::class, "create"])->name('admin-testimonial-create');
+        Route::post('/store', [AdminTestimonialController::class, "store"])->name('admin-testimonial-store');
+        Route::get('/destroy/{id}', [AdminTestimonialController::class, "destroy"])->name('admin-testimonial-destroy');
+        Route::get('/edit/{id}', [AdminTestimonialController::class, "edit"])->name('admin-testimonial-edit');
+        Route::post('/update/{id}', [AdminTestimonialController::class, "update"])->name('admin-testimonial-update');
+        Route::get('/show/{id}', [AdminTestimonialController::class, "show"])->name('admin-testimonial-show');
     });
 });
 

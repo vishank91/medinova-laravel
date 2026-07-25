@@ -14,10 +14,12 @@
         <i class="bi bi-building fs-5"></i><span class="float-end">Department</span>
     </a>
 
-    <a href="{{route('admin-doctor')}}" class="list-group-item list-group-item-action mb-1 active" aria-current="true">
+    <a href="{{ route('admin-doctor') }}" class="list-group-item list-group-item-action mb-1 active"
+        aria-current="true">
         <i class="bi bi-people fs-5"></i><span class="float-end">Doctor</span>
     </a>
-    <a href="#" class="list-group-item list-group-item-action mb-1 active" aria-current="true">
+    <a href="{{ route('admin-testimonial') }}" class="list-group-item list-group-item-action mb-1 active"
+        aria-current="true">
         <i class="bi bi-question-circle fs-5"></i><span class="float-end">Testimonial</span>
     </a>
     <a href="#" class="list-group-item list-group-item-action mb-1 active" aria-current="true">

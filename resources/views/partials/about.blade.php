@@ -12,11 +12,10 @@
                      <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">About Us</h5>
                      <h1 class="display-4">Best Medical Care For Yourself and Your Family</h1>
                  </div>
-                 <p>Tempor erat elitr at rebum at at clita aliquyam consetetur. Diam dolor diam ipsum et, tempor
-                     voluptua sit consetetur sit. Aliquyam diam amet diam et eos sadipscing labore. Clita erat ipsum
-                     et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo justo et tempor consetetur
-                     takimata eirmod, dolores takimata consetetur invidunt magna dolores aliquyam dolores dolore.
-                     Amet erat amet et magna</p>
+                 <p>At {{config('app.siteName')}}, we are committed to delivering exceptional healthcare with compassion, expertise, and
+                     advanced medical technology. Our experienced doctors and dedicated staff provide personalized
+                     treatments, preventive care, and comprehensive medical services, ensuring every patient receives
+                     the highest standard of care in a safe, comfortable, and trusted healthcare environment.</p>
                  <div class="row g-3 pt-3">
                      <div class="col-sm-3 col-6">
                          <div class="bg-light text-center rounded-circle py-4">
