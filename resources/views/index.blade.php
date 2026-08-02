@@ -29,5 +29,5 @@
     @include('partials.doctor')
     @include('partials.search')
     @include('partials.testimonial')
-    @include('partials.blog')
+    {{-- @include('partials.blog') --}}
 @endsection

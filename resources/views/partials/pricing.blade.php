@@ -25,7 +25,7 @@
                     </div>
                     <div class="text-center py-5">
                         <p style="height: 140px;text-align:justify" class="p-3">{{$item->shortDescription}}</p>
-                        <a href="#!" class="btn btn-primary rounded-pill py-3 px-5 my-2">Apply Now</a>
+                        <a href="{{route('show-pricing',$item->id)}}" class="btn btn-primary rounded-pill py-3 px-5 my-2">View Full Details</a>
                     </div>
                 </div>
             @endforeach

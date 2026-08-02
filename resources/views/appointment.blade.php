@@ -5,6 +5,6 @@
 
 @section('main')
     @include('partials.appointment')
-    @include('partials.team')
+    @include('partials.doctor')
     @include('partials.testimonial')
 @endsection
