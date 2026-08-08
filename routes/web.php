@@ -22,7 +22,10 @@ Route::get('/doctor', [FrontController::class, "doctorPage"])->name('doctor');
 Route::get('/testimonial', [FrontController::class, "testimonialPage"])->name('testimonial');
 Route::get('/appointment', [FrontController::class, "appointmentPage"])->name('appointment');
 Route::get('/search', [FrontController::class, "searchPage"])->name('search');
+Route::post('/newsletter-store', [FrontController::class, "newsletterStorePage"])->name('newsletter-store');
+Route::get('/newsletter-confirmation', [FrontController::class, "newsletterConfirmationPage"])->name('newsletter-confirmation');
 Route::get('/contact', [FrontController::class, "contactPage"])->name('contact');
+Route::post('/contact-store', [FrontController::class, "contactStorePage"])->name('contact-store');
 
 Route::prefix("admin")->group(function () {
     Route::get('/', [AdminHomeController::class, "homePage"])->name('admin-home');

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContactUs;
 use Illuminate\Http\Request;
 
 use App\Models\Service;
 use App\Models\Package;
 use App\Models\Department;
 use App\Models\Doctor;
+use App\Models\Newsletter;
 use App\Models\Testimonial;
 
 class FrontController extends Controller
@@ -18,6 +20,8 @@ class FrontController extends Controller
         private Department $department,
         private Doctor $doctor,
         private Testimonial $testimonial,
+        private Newsletter $newsletter,
+        private ContactUs $contactus,
     ) {}
 
     public function homePage()
@@ -93,8 +97,48 @@ class FrontController extends Controller
         return view("search", compact('service', 'testimonial'));
     }
 
+    public function newsletterStorePage(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|unique:newsletters'
+        ]);
+
+        $this->newsletter->create([
+            'email' => $request->email
+        ]);
+
+        return redirect("newsletter-confirmation");
+    }
+
+    public function newsletterConfirmationPage()
+    {
+        return view("newsletter-confirmation");
+    }
+
     public function contactPage()
     {
-        return view("contact");
+        $show = false;
+        return view("contact", compact('show'));
+    }
+
+    public function contactStorePage(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'subject' => 'required',
+            'message' => 'required'
+        ]);
+
+        $this->contactus->create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'subject' => $request->subject,
+            'message' => $request->message
+        ]);
+        $show = true;
+        return view("contact", compact('show'));
     }
 }

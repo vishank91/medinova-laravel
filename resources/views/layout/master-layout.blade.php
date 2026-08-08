@@ -121,7 +121,7 @@
                         <a href="{{ route('contact') }}"
                             class="nav-item nav-link {{ Route::is('contact') ? 'active' : '' }}">Contact</a>
                         <a href="{{ route('admin-home') }}"
-                            class="nav-item nav-link {{ Route::is('contact') ? 'active' : '' }}">Admin</a>
+                            class="nav-item nav-link {{ Route::is('admin') ? 'active' : '' }}">Admin</a>
                         {{-- <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
@@ -211,11 +211,17 @@
                     <h5 class="text-light">Stay Updated with Our Health Newsletter</h5>
                     <p class="text-light">Subscribe to the {{ config('app.siteName') }} newsletter to receive the
                         latest health tips, wellness advice, medical updates, and hospital news. </p>
-                    <form action="">
+                    <form action="{{ route('newsletter-store') }}" method="POST">
+                        @csrf
                         <div class="input-group">
-                            <input type="text" class="form-control p-3 border-0" placeholder="Your Email Address">
+                            <input type="text" name="email" class="form-control p-3 border-0"
+                                placeholder="Your Email Address">
                             <button class="btn btn-primary">Subscribe</button>
+
                         </div>
+                        @error('email')
+                            <p class="text-light">{{ $message }}</p>
+                        @enderror
                     </form>
                     <h6 class="text-primary text-uppercase mt-4 mb-3">Follow Us</h6>
                     <div class="d-flex">
