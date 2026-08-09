@@ -74,7 +74,7 @@ class AdminTestimonialController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'name' => 'required|min:3|max:100|unique:testimonials',
+            'name' => ['required', 'min:3', "max:100", Rule::unique('testimonials')->ignore($id)],
             'message' => 'required',
             'pic' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:1024',
         ]);

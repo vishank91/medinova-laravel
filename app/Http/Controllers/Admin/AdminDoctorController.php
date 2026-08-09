@@ -83,7 +83,7 @@ class AdminDoctorController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'name' => ['required', 'min:3', "max:100", Rule::unique('services')->ignore($id)],
+            'name' => ['required', 'min:3', "max:100", Rule::unique('doctors')->ignore($id)],
             'departmentId' => 'required',
             'shortDescription' => 'required',
             'pic' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:1024',

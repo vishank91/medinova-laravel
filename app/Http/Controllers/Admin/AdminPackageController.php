@@ -83,7 +83,7 @@ class AdminPackageController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'name' => ['required', 'min:3', "max:100", Rule::unique('services')->ignore($id)],
+            'name' => ['required', 'min:3', "max:100", Rule::unique('packages')->ignore($id)],
             'basePrice' => 'required',
             'discount' => 'required',
             'shortDescription' => 'required',
