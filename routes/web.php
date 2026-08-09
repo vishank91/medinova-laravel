@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\AdminPackageController;
 use App\Http\Controllers\Admin\AdminDepartmentController;
 use App\Http\Controllers\Admin\AdminDoctorController;
 use App\Http\Controllers\Admin\AdminTestimonialController;
+use App\Http\Controllers\Admin\AdminNewsletterController;
+use App\Http\Controllers\Admin\AdminContactUsController;
 
 Route::get('/', [FrontController::class, "homePage"])->name('home');
 Route::get('/about', [FrontController::class, "aboutPage"])->name('about');
@@ -78,6 +80,19 @@ Route::prefix("admin")->group(function () {
         Route::get('/edit/{id}', [AdminTestimonialController::class, "edit"])->name('admin-testimonial-edit');
         Route::post('/update/{id}', [AdminTestimonialController::class, "update"])->name('admin-testimonial-update');
         Route::get('/show/{id}', [AdminTestimonialController::class, "show"])->name('admin-testimonial-show');
+    });
+
+    Route::prefix("newsletter")->group(function () {
+        Route::get('/', [AdminNewsletterController::class, "index"])->name('admin-newsletter');
+        Route::get('/destroy/{id}', [AdminNewsletterController::class, "destroy"])->name('admin-newsletter-destroy');
+        Route::get('/update/{id}', [AdminNewsletterController::class, "update"])->name('admin-newsletter-update');
+    });
+
+    Route::prefix("contactus")->group(function () {
+        Route::get('/', [AdminContactUsController::class, "index"])->name('admin-contactus');
+        Route::get('/destroy/{id}', [AdminContactUsController::class, "destroy"])->name('admin-contactus-destroy');
+        Route::get('/update/{id}', [AdminContactUsController::class, "update"])->name('admin-contactus-update');
+        Route::get('/show/{id}', [AdminContactUsController::class, "show"])->name('admin-contactus-show');
     });
 });
 
