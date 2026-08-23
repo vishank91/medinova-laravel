@@ -11,6 +11,7 @@ use App\Models\Department;
 use App\Models\Doctor;
 use App\Models\Newsletter;
 use App\Models\Testimonial;
+use App\Models\Appointment;
 
 class FrontController extends Controller
 {
@@ -22,6 +23,7 @@ class FrontController extends Controller
         private Testimonial $testimonial,
         private Newsletter $newsletter,
         private ContactUs $contactus,
+        private Appointment $appointment,
     ) {}
 
     public function homePage()
@@ -45,7 +47,9 @@ class FrontController extends Controller
     {
         $service = $this->service->all();
         $testimonial = $this->testimonial->all();
-        return view("service", compact('service', 'testimonial'));
+        $department = $this->department->all();
+        $doctor = $this->doctor->all();
+        return view("service", compact('service', 'testimonial', 'department', 'doctor'));
     }
 
     public function showServicePage($id)
@@ -80,15 +84,50 @@ class FrontController extends Controller
 
     public function testimonialPage()
     {
-        return view("testimonial");
+        $testimonial = $this->testimonial->all();
+        return view("testimonial", compact('testimonial'));
+    }
+
+    public function getDoctor($did)
+    {
+        $doctors = $this->doctor->where('departmentId', $did)->get();
+        return response()->json($doctors);
     }
 
     public function appointmentPage()
     {
         $doctor = $this->doctor->all();
         $testimonial = $this->testimonial->all();
-        return view("appointment", compact('doctor', 'testimonial'));
+        $department = $this->department->all();
+        return view("appointment", compact('doctor', 'testimonial', 'department'));
     }
+
+    public function appointmentStorePage(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'date' => 'required',
+            'time' => 'required',
+            'doctorId' => 'required'
+        ]);
+        $this->appointment->create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'date' => $request->date,
+            'time' => $request->time,
+            'doctorId' => $request->doctorId
+        ]);
+        return redirect("appointment-confirmation");
+    }
+
+    public function appointmentConfirmationPage()
+    {
+        return view("appointment-confirmation");
+    }
+
 
     public function searchPage()
     {

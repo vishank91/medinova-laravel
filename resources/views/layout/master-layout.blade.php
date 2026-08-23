@@ -120,19 +120,22 @@
                             class="nav-item nav-link {{ Route::is('testimonial') ? 'active' : '' }}">Testimonial</a>
                         <a href="{{ route('contact') }}"
                             class="nav-item nav-link {{ Route::is('contact') ? 'active' : '' }}">Contact</a>
-                        <a href="{{ route('admin-home') }}"
-                            class="nav-item nav-link {{ Route::is('admin') ? 'active' : '' }}">Admin</a>
-                        {{-- <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="blog.html" class="dropdown-item">Blog Grid</a>
-                                <a href="detail.html" class="dropdown-item">Blog Detail</a>
-                                <a href="team.html" class="dropdown-item">The Team</a>
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="appointment.html" class="dropdown-item">Appointment</a>
-                                <a href="search.html" class="dropdown-item">Search</a>
+                        @if (Auth::user())
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle"
+                                    data-bs-toggle="dropdown">{{ Auth::user()->name }}</a>
+                                <div class="dropdown-menu m-0">
+                                    <a href="{{ route('dashboard') }}" class="dropdown-item">Dashboard</a>
+                                    <form action="{{ route('logout') }}" method="post">
+                                        @csrf
+                                        <button class="btn ms-1">Logout</button>
+                                    </form>
+                                </div>
                             </div>
-                        </div> --}}
+                        @else
+                            <a href="{{ route('login') }}"
+                                class="nav-item nav-link {{ Route::is('login') ? 'active' : '' }}">Login</a>
+                        @endif
                     </div>
                 </div>
             </nav>

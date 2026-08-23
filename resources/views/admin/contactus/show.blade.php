@@ -33,15 +33,15 @@
                             </tr>
                             <tr>
                                 <th>Subject</th>
-                                <td>{{$data->subject}}</td>
+                                <td>{{ $data->subject }}</td>
                             </tr>
-                             <tr>
+                            <tr>
                                 <th>Message</th>
-                                <td>{{$data->message}}</td>
+                                <td>{{ $data->message }}</td>
                             </tr>
-                             <tr>
+                            <tr>
                                 <th>Date</th>
-                                <td>{{$data->created_at}}</td>
+                                <td>{{ $data->created_at }}</td>
                             </tr>
                             <tr>
                                 <th>Status</th>
@@ -49,8 +49,13 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <a href="{{ route('admin-contactus-update', $data->id) }}"
-                                        class="btn btn-primary w-100">Change Status</a>
+                                    @if ($data->status)
+                                        <a href="{{ route('admin-contactus-update', $data->id) }}"
+                                            class="btn btn-primary w-100">Change Status</a>
+                                    @else
+                                        <a href="{{ route('admin-contactus-destroy', $data->id) }}"
+                                            class="btn btn-danger w-100">Delete</a>
+                                    @endif
                                 </td>
                             </tr>
                         </tbody>

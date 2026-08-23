@@ -15,23 +15,19 @@
                     <tbody>
                         <tr>
                             <th>Name</th>
-                            <td>Nitin Chauhan</td>
-                        </tr>
-                        <tr>
-                            <th>Username</th>
-                            <td>nitin</td>
+                            <td>{{Auth::user()->name}}</td>
                         </tr>
                         <tr>
                             <th>Email</th>
-                            <td>vishankchauhan@gmail.com</td>
+                            <td>{{Auth::user()->email}}</td>
                         </tr>
                         <tr>
                             <th>Phone</th>
-                            <td>9873848046</td>
+                            <td>{{Auth::user()->phone}}</td>
                         </tr>
                         <tr>
                             <th>Role</th>
-                            <td>Super Admin</td>
+                            <td>{{Auth::user()->role}}</td>
                         </tr>
                     </tbody>
                 </table>

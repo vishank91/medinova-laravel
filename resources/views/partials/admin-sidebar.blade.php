@@ -31,7 +31,7 @@
     <a href="{{route('admin-newsletter')}}" class="list-group-item list-group-item-action mb-1 active" aria-current="true">
         <i class="bi bi-envelope fs-5"></i><span class="float-end">Newsletter</span>
     </a>
-    <a href="#" class="list-group-item list-group-item-action mb-1 active" aria-current="true">
+    <a href="{{route('admin-user')}}" class="list-group-item list-group-item-action mb-1 active" aria-current="true">
         <i class="bi bi-people-fill fs-5"></i><span class="float-end">Users</span>
     </a>
 </div>

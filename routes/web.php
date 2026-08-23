@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\AdminDoctorController;
 use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Admin\AdminNewsletterController;
 use App\Http\Controllers\Admin\AdminContactUsController;
+use App\Http\Controllers\Admin\AdminUserController;
 
 Route::get('/', [FrontController::class, "homePage"])->name('home');
 Route::get('/about', [FrontController::class, "aboutPage"])->name('about');
@@ -21,8 +22,11 @@ Route::get('/service/show/{id}', [FrontController::class, "showServicePage"])->n
 Route::get('/pricing', [FrontController::class, "pricingPage"])->name('pricing');
 Route::get('/pricing/show/{id}', [FrontController::class, "showPricingPage"])->name('show-pricing');
 Route::get('/doctor', [FrontController::class, "doctorPage"])->name('doctor');
+Route::get('/get-doctor/{did}', [FrontController::class, "getDoctor"])->name('get-doctor');
 Route::get('/testimonial', [FrontController::class, "testimonialPage"])->name('testimonial');
 Route::get('/appointment', [FrontController::class, "appointmentPage"])->name('appointment');
+Route::post('/appointment-store', [FrontController::class, "appointmentStorePage"])->name('appointment-store');
+Route::get('/appointment-confirmation', [FrontController::class, "appointmentconfirmationPage"])->name('appointment-confirmation');
 Route::get('/search', [FrontController::class, "searchPage"])->name('search');
 Route::post('/newsletter-store', [FrontController::class, "newsletterStorePage"])->name('newsletter-store');
 Route::get('/newsletter-confirmation', [FrontController::class, "newsletterConfirmationPage"])->name('newsletter-confirmation');
@@ -94,12 +98,20 @@ Route::prefix("admin")->group(function () {
         Route::get('/update/{id}', [AdminContactUsController::class, "update"])->name('admin-contactus-update');
         Route::get('/show/{id}', [AdminContactUsController::class, "show"])->name('admin-contactus-show');
     });
+
+    Route::prefix("user")->group(function () {
+        Route::get('/', [AdminUserController::class, "index"])->name('admin-user');
+        Route::get('/create', [AdminUserController::class, "create"])->name('admin-user-create');
+        Route::post('/store', [AdminUserController::class, "store"])->name('admin-user-store');
+        Route::get('/destroy/{id}', [AdminUserController::class, "destroy"])->name('admin-user-destroy');
+        Route::get('/edit/{id}', [AdminUserController::class, "edit"])->name('admin-user-edit');
+        Route::post('/update/{id}', [AdminUserController::class, "update"])->name('admin-user-update');
+        Route::get('/show/{id}', [AdminUserController::class, "show"])->name('admin-user-show');
+    });
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('dashboard', function () {
-        return Inertia::render('dashboard');
-    })->name('dashboard');
+    Route::get('dashboard', [AdminHomeController::class, "homePage"])->name('dashboard');
 });
 
 
