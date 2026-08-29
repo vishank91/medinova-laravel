@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Admin\AdminNewsletterController;
 use App\Http\Controllers\Admin\AdminContactUsController;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminAppointmentController;
 
 Route::get('/', [FrontController::class, "homePage"])->name('home');
 Route::get('/about', [FrontController::class, "aboutPage"])->name('about');
@@ -107,6 +108,12 @@ Route::prefix("admin")->group(function () {
         Route::get('/edit/{id}', [AdminUserController::class, "edit"])->name('admin-user-edit');
         Route::post('/update/{id}', [AdminUserController::class, "update"])->name('admin-user-update');
         Route::get('/show/{id}', [AdminUserController::class, "show"])->name('admin-user-show');
+    });
+
+    Route::prefix("appointment")->group(function () {
+        Route::get('/', [AdminAppointmentController::class, "index"])->name('admin-appointment');
+        Route::get('/destroy/{id}', [AdminAppointmentController::class, "destroy"])->name('admin-appointment-destroy');
+        Route::get('/update/{id}', [AdminAppointmentController::class, "update"])->name('admin-appointment-update');
     });
 });
 

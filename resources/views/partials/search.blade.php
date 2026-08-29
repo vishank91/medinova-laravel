@@ -4,19 +4,13 @@
             <div class="text-center mx-auto mb-5" style="max-width: 500px;">
                 <h5 class="d-inline-block text-white text-uppercase border-bottom border-5">Find A Doctor</h5>
                 <h1 class="display-4 mb-4">Find A Healthcare Professionals</h1>
-                <h5 class="text-white fw-normal">Duo ipsum erat stet dolor sea ut nonumy tempor. Tempor duo lorem eos
-                    sit sed ipsum takimata ipsum sit est. Ipsum ea voluptua ipsum sit justo</h5>
+                <h5 class="text-white fw-normal">Find the healthcare information, medical services, departments, doctors, and health packages you are looking for. Use the search bar to quickly discover relevant information and access the right healthcare services at Medinova.</h5>
             </div>
             <div class="mx-auto" style="width: 100%; max-width: 600px;">
-                <div class="input-group">
-                    <select class="form-select border-primary w-25" style="height: 60px;">
-                        <option selected>Department</option>
-                        <option value="1">Department 1</option>
-                        <option value="2">Department 2</option>
-                        <option value="3">Department 3</option>
-                    </select>
-                    <input type="text" class="form-control border-primary w-50" placeholder="Keyword">
-                    <button class="btn btn-dark border-0 w-25">Search</button>
+                <div class="btn btn-group w-100">
+                    <a href="{{route('doctor')}}" class="btn btn-success border-0 w-25">Doctor</a>
+                    <a href="{{route('service')}}" class="btn btn-success border-0 w-25">Our Services</a>
+                    <a href="{{route('testimonial')}}" class="btn btn-success border-0 w-25">Our Testimonials</a>
                 </div>
             </div>
         </div>

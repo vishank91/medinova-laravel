@@ -22,16 +22,19 @@
         aria-current="true">
         <i class="bi bi-question-circle fs-5"></i><span class="float-end">Testimonial</span>
     </a>
-    <a href="#" class="list-group-item list-group-item-action mb-1 active" aria-current="true">
+    <a href="{{ route('admin-appointment') }}" class="list-group-item list-group-item-action mb-1 active"
+        aria-current="true">
         <i class="bi bi-list-check fs-5"></i><span class="float-end">Appointments</span>
     </a>
-    <a href="{{route('admin-contactus')}}" class="list-group-item list-group-item-action mb-1 active" aria-current="true">
+    <a href="{{ route('admin-contactus') }}" class="list-group-item list-group-item-action mb-1 active"
+        aria-current="true">
         <i class="bi bi-telephone fs-5"></i><span class="float-end">Conact Us</span>
     </a>
-    <a href="{{route('admin-newsletter')}}" class="list-group-item list-group-item-action mb-1 active" aria-current="true">
+    <a href="{{ route('admin-newsletter') }}" class="list-group-item list-group-item-action mb-1 active"
+        aria-current="true">
         <i class="bi bi-envelope fs-5"></i><span class="float-end">Newsletter</span>
     </a>
-    <a href="{{route('admin-user')}}" class="list-group-item list-group-item-action mb-1 active" aria-current="true">
+    <a href="{{ route('admin-user') }}" class="list-group-item list-group-item-action mb-1 active" aria-current="true">
         <i class="bi bi-people-fill fs-5"></i><span class="float-end">Users</span>
     </a>
 </div>
